@@ -2,91 +2,143 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Troop : MonoBehaviour
 {
-    public float InitTime;
-    public Troop Target;
-    public float SphereRadius;
+    [SerializeField] private float InitTime;
+    [SerializeField] private Troop Target;
+    [SerializeField] private float SphereRadius;
+
+    [SerializeField] private bool CanMove;
+    [SerializeField] private float MoveSpeed;
+    [SerializeField] private float MaxMoveSpeed;
+
+    [SerializeField] private float AttackSpeed;
+    [SerializeField] private float AttackDistance;
+
+    [SerializeField] private Collider[] col;
+    [SerializeField] private List<float> list;
+
+    [SerializeField] private float enemydist;
 
     public float Health;
     public float MaxHealth;
-
-    public bool CanMove;
-    public float MoveSpeed;
-    public float MaxMoveSpeed;
-
-    public float AttackSpeed;
-    public float AttackDistance;
 
     private void Start()
     {
         StartCoroutine(Init());
     }
 
-    public IEnumerator Init()
+    private IEnumerator Init()
     {
         Health = MaxHealth;
         //deploy time
         yield return new WaitForSeconds(InitTime);
         //add yourself to active enemies
         GameManager.Instance.SpawnedEnemies.Add(this);
+        Target = LocateEnemy();
         CanMove = true;
     }
 
-    public Troop NearestEnemy()
+    /// <summary>
+    /// return the troop that is closest to the troop scanning
+    /// </summary>
+    /// <returns></returns>
+    private Troop LocateEnemy()
     {
-        Collider[] col = Physics.OverlapSphere(transform.position, SphereRadius);
-        List<float> list = new List<float>();
+        print(gameObject.name + " is locating enemy");
+        col = Physics.OverlapSphere(transform.position, SphereRadius);
+
+        list = new List<float>();
 
         for (int i = 0; i < col.Length; i++)
         {
             //adds enemy distance to list
-            list.Add(EnemyDistance(col[i]));
+            if (col[i].GetInstanceID() != GetComponent<Collider>().GetInstanceID())
+            {
+                list.Add(EnemyDistance(col[i]));
+            }
         }
         int index = list.IndexOf(list.Min());
-
+        
+        enemydist = list[index];
+        
+        //returns the troop that is closest to you
         return col[index].GetComponent<Troop>();
     }
 
-    public float EnemyDistance(Troop troop)
+    private float EnemyDistance(Collider troop)
     {
-        return Vector3.Distance(transform.position, troop.transform.position);
+        float distance = 0;
+        if (troop.GetInstanceID() != GetComponent<Collider>().GetInstanceID())
+        {
+            distance = Vector3.Distance(transform.position, troop.transform.position);
+        }
+        return distance;
     }
 
-    public float EnemyDistance(Collider troop)
-    {
-        return Vector3.Distance(transform.position, troop.transform.position);
-    }
-
+    /// <summary>
+    /// WIP, gets called when withing a cetrain distance depending on the troop (OVERRIDE PER TROOP VARIANT)
+    /// </summary>
+    /// <param name="troop"></param>
+    /// <returns></returns>
     public virtual IEnumerator Attack(Troop troop)
     {
-        yield return null;
+        if (troop.Health <= 0)
+        {
+            
+        }
+        else 
+        {
+            yield return new WaitForSeconds(0.1f);
+            print("attacking");
+        }
     }
 
-    public void Walk(Troop nearestEnemy, float Movespeed)
+    private void MoveTroop()
     {
-        Vector3 troopLocation = nearestEnemy.transform.position;
         //move pos to nearest enemy
-        transform.position = (troopLocation * Time.deltaTime) * Movespeed;
+        if (Target != null && !HasArrivedAtTarget())
+        {
+            transform.LookAt(Target.transform);
+            transform.position = Vector3.Lerp(transform.position, Target.transform.position, Time.deltaTime * MoveSpeed);
+        }
     }
 
     private void FixedUpdate()
     {
-        //Death();
+        if (CanMove)
+        {
+            //put this in an if statement with an enum (IMPORTANT!!!)
 
-        if (CanMove && !(EnemyDistance(NearestEnemy()) >= AttackDistance) && !Target)
-        {
-            Walk(NearestEnemy(), MoveSpeed);
+            LocateEnemy();
+            if (HasArrivedAtTarget() && Target.Health > 0)
+            {
+                StartCoroutine(Attack(Target));
+            }
+            MoveTroop();
         }
-        else if (CanMove && EnemyDistance(NearestEnemy()) >= AttackDistance && !Target)
-        {
-            StartCoroutine(Attack(Target));
-        }
+       
     }
 
-    public void Death()
+    /// <summary>
+    /// return true or false based on if the troop is within attacking range
+    /// </summary>
+    /// <returns></returns>
+    private bool HasArrivedAtTarget()
+    {
+        //replace magic number with attackdistance when done testing
+        if (enemydist <= AttackDistance)
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+
+    private void Death()
     {
         if (Health >= 0)
         {
