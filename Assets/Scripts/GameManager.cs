@@ -6,15 +6,15 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public List<Troop> SpawnedEnemies;
-    public List<Troop> TotalEnemies;
-    public Troop SelectedTroop;
+    public List<TroopBase> SpawnedEnemies;
+    public List<TroopBase> TotalEnemies;
+    public TroopBase SelectedTroop;
 
     private void Awake()
     {
         Instance = this;
-        SpawnedEnemies = new List<Troop>();
-        TotalEnemies = new List<Troop>();
+        SpawnedEnemies = new List<TroopBase>();
+        TotalEnemies = new List<TroopBase>();
     }
     private void Update()
     {
@@ -23,6 +23,11 @@ public class GameManager : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Instantiate(SelectedTroop);
+        Vector3 MousePos = Input.mousePosition;
+
+        Vector3 objectPos = Camera.current.ScreenToWorldPoint(MousePos);
+
+        Instantiate(SelectedTroop, objectPos, Quaternion.identity);
     }
+
 }

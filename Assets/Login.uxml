@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 0; height: 393px;">
+        <ui:VisualElement style="flex-grow: 1;">
+            <ui:TextField picking-mode="Ignore" label="Email" name="Create-Email-Text" />
+            <ui:TextField picking-mode="Ignore" label="Username" name="Create-Username-Text" />
+            <ui:TextField picking-mode="Ignore" label="Password&#x9;" name="Create-Password-Text" password="true" />
+            <ui:Button text="Create Account" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Create-Account-Button" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1;" />
+        <ui:VisualElement style="flex-grow: 1;">
+            <ui:TextField picking-mode="Ignore" label="Email" name="Login-Email-Text" />
+            <ui:TextField picking-mode="Ignore" label="Password" name="Login-Password-Text" />
+            <ui:Button text="Log In" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Login-Account-Button" />
+        </ui:VisualElement>
+        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Output-Label" style="height: 30px;" />
+    </ui:VisualElement>
+</ui:UXML>

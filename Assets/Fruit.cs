@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class Fruit : MonoBehaviour
 {
-    string uri = "http://127.0.0.1/edsa-webdev/sendingtest.php";
+    string uri = "http://127.0.0.1/edsa-webdev/api.php";
 
     //IEnumerator Start()
     //{
