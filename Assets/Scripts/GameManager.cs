@@ -10,15 +10,24 @@ public class GameManager : MonoBehaviour
     public List<TroopBase> TotalEnemies;
     public TroopBase SelectedTroop;
 
+    //need to be stored in database
+    [SerializeField] private int TotalAmountBuilders;
+    [SerializeField] private int TotalCoinAmount;
+    [SerializeField] private int TotalDarkElixirAmount;
+    [SerializeField] private int TotalElixirAmount;
+
+    [SerializeField] private int MaxBuilders = 3;
+
     private void Awake()
     {
         Instance = this;
         SpawnedEnemies = new List<TroopBase>();
         TotalEnemies = new List<TroopBase>();
     }
-    private void Update()
+
+    private void Start()
     {
-        
+        GetCurrency();
     }
 
     private void OnMouseDown()
@@ -29,5 +38,41 @@ public class GameManager : MonoBehaviour
 
         Instantiate(SelectedTroop, objectPos, Quaternion.identity);
     }
+
+    #region Currency Saving
+
+    private void OnApplicationQuit()
+    {
+        SetCurrency();
+    }
+
+    /// <summary>
+    /// replace with sql database later on
+    /// </summary>
+    private void GetCurrency()
+    {
+        TotalAmountBuilders = PlayerPrefs.GetInt("TotalAmountBuilders");
+        TotalCoinAmount = PlayerPrefs.GetInt("TotalCoinAmount");
+        TotalDarkElixirAmount = PlayerPrefs.GetInt("TotalDarkElixirAmount");
+        TotalElixirAmount = PlayerPrefs.GetInt("TotalElixirAmount");
+    }
+    /// <summary>
+    /// replace with sql database later on
+    /// </summary>
+    private void SetCurrency()
+    {
+        PlayerPrefs.SetInt("TotalAmountBuilders", TotalAmountBuilders);
+        PlayerPrefs.SetInt("TotalCoinAmount", TotalCoinAmount);
+        PlayerPrefs.SetInt("TotalDarkElixirAmount", TotalDarkElixirAmount);
+        PlayerPrefs.SetInt("TotalElixirAmount", TotalElixirAmount);
+    }
+
+    #endregion
+
+    public int TotalCoins() => TotalCoinAmount;
+    public int TotalDarkElixir() => TotalDarkElixirAmount;
+    public int TotalElixir() => TotalElixirAmount;
+    public int TotalBuilders() => TotalAmountBuilders;
+    public int TotalMaxBuilders() => MaxBuilders;
 
 }
