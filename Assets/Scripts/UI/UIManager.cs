@@ -6,6 +6,8 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance;
+
     [Header("Fields")]
     public TextMeshProUGUI TextBuilders;
     public TextMeshProUGUI TextDarkElixir;
@@ -33,6 +35,11 @@ public class UIManager : MonoBehaviour
     public Vector3 increasedScale;
 
     public void TestFunction() { Debug.Log("this is working"); }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -81,6 +88,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void DisplayCountTotal(List<Building> list)
+    {
+        GameManager.Instance.CountTotal(list);
+    }
+
     /// <summary>
     /// sets the vars in the Gamemanager.cs to TMProUGUI types
     /// </summary>
@@ -91,6 +103,7 @@ public class UIManager : MonoBehaviour
         TextElixir.text = GameManager.Instance.TotalElixir().ToString();
         TextCoins.text = GameManager.Instance.TotalCoins().ToString();
     }
+
 
     #region Panel Functions
     public void ShowBattlePanel() { PanelIndex = 4; }

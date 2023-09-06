@@ -10,18 +10,21 @@ public class BounceAnimation : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public float Animspeed;
 
+    public bool CanZoomIn = false;
+    public bool CanZoomOut = false;
+
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
-        GetComponent<RectTransform>().localScale = Vector3.Lerp(ZoomoutAmount, ZoominAmount, Time.deltaTime * Animspeed);
+        GetComponent<RectTransform>().localScale = Vector3.Slerp(ZoomoutAmount, ZoominAmount, Time.deltaTime * Animspeed);
     }
 
     public void OnPointerExit(PointerEventData pointerEventData)
     {
-        GetComponent<RectTransform>().localScale = Vector3.Lerp(ZoominAmount, ZoomoutAmount, Time.deltaTime * Animspeed);
+        GetComponent<RectTransform>().localScale = Vector3.Slerp(ZoominAmount, ZoomoutAmount, Time.deltaTime * Animspeed);
     }
 
     private void OnDisable()
     {
-        GetComponent<RectTransform>().localScale = Vector3.Lerp(ZoominAmount, ZoomoutAmount, Time.deltaTime * Animspeed);
+        GetComponent<RectTransform>().localScale = Vector3.Slerp(ZoominAmount, ZoomoutAmount, Time.deltaTime * Animspeed);
     }
 }
