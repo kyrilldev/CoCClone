@@ -73,4 +73,16 @@ public class Building : MonoBehaviour
                 break;
         }
     }
+
+    public bool TowerFull()
+    {
+        if (ResourceAmount >= maxCurrency)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
