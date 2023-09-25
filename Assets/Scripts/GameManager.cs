@@ -1,11 +1,9 @@
-using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -99,99 +97,87 @@ public class GameManager : MonoBehaviour
     {
         int towerIndex = 0;
 
-        int excess = 0;
-
-        int AmountOfTowersInt = 0;
-        double AmountOfTowers = 0;
-        //does the deposit fit in the first building?
-        if (!list[towerIndex].TowerFull() && (list[towerIndex].ResourceAmount + deposit) < list[towerIndex].maxCurrency)
+        List<int> maxes = new();
+        for (int i = 0; i < list.Count; i++)
         {
-            list[towerIndex].ResourceAmount += deposit;
+            maxes.Add(list[i].maxCurrency);
         }
-        else if (list[towerIndex].TowerFull())
+        List<int> resources = new();
+        for (int i = 0; i < list.Count; i++)
         {
-            //move onto next tower in the list
-            towerIndex++;
-        }
-        else if (!list[towerIndex].TowerFull() && (list[towerIndex].ResourceAmount + deposit) >= list[towerIndex].maxCurrency)
-        {
-            //calculate the amount that does fit
-            int am = list[towerIndex].maxCurrency = list[towerIndex].ResourceAmount;
-            //deposit the amount that does fit
-            list[towerIndex].ResourceAmount += am;
-            //calculate excess not deposited
-            excess = deposit - am;
-            //move to next tower
-            towerIndex++;
+            resources.Add(list[i].ResourceAmount);
         }
 
-        //als de resourceamount in de current tower met de excess amount kleiner is dan de maxcurrency
-        if ((list[towerIndex].ResourceAmount + excess) < list[towerIndex].maxCurrency)
+        int totalResourceRoom = 0;
+        for (int i = 0; i < list.Count; i++)
         {
-            //deposit the excess;
-            list[towerIndex].ResourceAmount += excess;
+            totalResourceRoom += list[i].maxCurrency;
         }
-        else {
-            //calculate how many buildings we need to fit the deposit
-            AmountOfTowers = excess / list[towerIndex].maxCurrency;
-            AmountOfTowersInt = (int)RoundUpValue(AmountOfTowers, 2);
-            UnityEngine.Debug.Log("the amount of towers needed are: " + AmountOfTowersInt + "rounded");
+        print("total amount of room is: " + totalResourceRoom);
+
+        int totalResources = 0;
+        for (int i = 0; i < list.Count; i++)
+        {
+            totalResources += list[i].ResourceAmount;
+        }
+        print("total amount of resources stored are: " + totalResources);
+
+        int resourceRoomLeft = totalResourceRoom - totalResources;
+
+        List<int> roomLeftPerTower = new();
+
+        foreach (Building b in list)
+        {
+            int roomLeft = b.maxCurrency - b.ResourceAmount;
+            roomLeftPerTower.Add(roomLeft);
         }
 
-        //do have the amount of towers needed?
-        int AmountOfTowersLeft = TowersFilled(ref list);
-        UnityEngine.Debug.Log("the amount of towers filled are: " + AmountOfTowersLeft);
-        //als we genoeg torens hebben
-        if (AmountOfTowersInt <= AmountOfTowersLeft)
+        if (deposit > totalResourceRoom)
         {
-            //vul alle torens die gevuld kunnen worden
-            //for example hier komt 3.2 uit
-            decimal fillableTowers = (decimal)(excess / AmountOfTowers);
-            //als het getal heel is
-            if (fillableTowers % 1 == 0)
+            int overFlow = deposit -= totalResourceRoom;
+            print("the amount of: " + overFlow + " was deleted due to lack of storage");
+        }
+
+        //filling the actual towers
+        for (int i = 0; i < roomLeftPerTower.Count; i++)
+        {
+            //als er geen ruimte meer is in de betrefte ruimte of de deposit leeg is
+            if (roomLeftPerTower[i] <= 0 || deposit <= 0)
             {
-                //vul elk gebouw tot de max
-                for (int i = towerIndex; i < list.Count - towerIndex; i++)
-                {
-                    FillBuilding(ref list, i);
-                }
+                //breek uit de for-loop
+                break;
             }
+            //als er niet genoeg deposit is de een tower te vullen
+            else if (roomLeftPerTower[i] >= deposit)
+            {
+                int fillAmount = deposit;
+                deposit = 0;
+                list[i].ResourceAmount += fillAmount;
+            }
+            //als er te veel deposit is voor deze tower
             else
             {
-                //als het 3.2 is
-                int wholeTowers = (int)Decimal.Truncate(fillableTowers);
-                //fill whole towers
-
-                //get the decimalnumber
-
-                //calculate how much the decimalnumber means in currency
-
-                //towersindex++;
-                //deposit the remaining amount in the final tower
+                //indicate how much room there is in the tower
+                int roomLeft = roomLeftPerTower[i];
+                //subtract the amount were gonna deposit from the deposit
+                deposit -= roomLeft;
+                //top up the tower
+                list[i].ResourceAmount += roomLeft;
             }
         }
-        //als we niet genoeg torens hebben
-        else if (AmountOfTowersInt > AmountOfTowersLeft)
-        {
-            //hoeveel gebouwen hebben we?
-            int filleableBuildings = AmountOfTowersLeft;
-            //begin bij de towerindex, ga tot het einde van de lijst (kan nog vervangen worden door filleableBuildings)
-            for (int i = towerIndex; i < list.Count; i++)
-            {
-                //use fill function to fill the buildings that we do have
-            }
 
-            //calculate how many buildings were not able to filled
-
-            //let's say it's 0.7f
-            int wastedDeposit = 0;
-            //wastedDeposit = excess - the amount used to fill the other builings;
-
-            UnityEngine.Debug.Log("the amount of:" + wastedDeposit);
-        }
+        CalculateMaxCurrency(list);
 
         //vervolgens aan het einde runnen we een functie die de totale resources in de list bij elkaar optelt en het bijpassende variabele update
-        UIManager.Instance.DisplayCountTotal(list);
+        //UIManager.Instance.DisplayCountTotal(list);
+    }
+
+    private void CalculateMaxCurrency(List<Building> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            TotalCoinAmount += list[i].ResourceAmount;
+        }
     }
 
     /// <summary>
@@ -200,6 +186,14 @@ public class GameManager : MonoBehaviour
     public void FillBuilding(ref List<Building> list, int towerfillindex)
     {
         list[towerfillindex].ResourceAmount = list[towerfillindex].maxCurrency;
+    }
+
+    public void FillAllBuildings(List<Building> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            list[i].ResourceAmount = list[i].maxCurrency;
+        }
     }
 
     /// <summary>
