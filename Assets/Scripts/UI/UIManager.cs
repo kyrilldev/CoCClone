@@ -55,22 +55,6 @@ public class UIManager : MonoBehaviour
     private void FixedUpdate()
     {
         UpdateCurrencies();
-
-        switch (PanelIndex)
-        {
-            case 1:
-                ForLooping(0);
-                break;
-            case 2:
-                ForLooping(1);
-                break;
-            case 3:
-                ForLooping(2);
-                break;
-            case 4:
-                ForLooping(3);
-                break;
-        }
     }
 
     private void ForLooping(int active)
@@ -88,15 +72,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void DisplayCountTotal(List<Building> list)
-    {
-        GameManager.Instance.CountTotal(list);
-    }
-
     /// <summary>
     /// sets the vars in the Gamemanager.cs to TMProUGUI types
     /// </summary>
-    private void UpdateCurrencies()
+    public void UpdateCurrencies()
     {
         TextBuilders.text = GameManager.Instance.TotalBuilders().ToString() + " of " + GameManager.Instance.TotalMaxBuilders().ToString();
         TextDarkElixir.text = GameManager.Instance.TotalDarkElixir().ToString();
@@ -106,13 +85,13 @@ public class UIManager : MonoBehaviour
 
 
     #region Panel Functions
-    public void ShowBattlePanel() { PanelIndex = 4; }
+    public void ShowBattlePanel() { ForLooping(3); }
 
-    public void ShowLevelPanel() { PanelIndex = 2; }
+    public void ShowLevelPanel() { ForLooping(1); }
 
-    public void ShowSettingsPanel() { PanelIndex = 3; }
+    public void ShowSettingsPanel() { ForLooping(2); }
 
-    public void ShowGUI() { PanelIndex = 1; }
+    public void ShowGUI() { ForLooping(0); }
 
     #endregion
 }
