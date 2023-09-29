@@ -139,8 +139,6 @@ public class GameManager : MonoBehaviour
                 //calculate overflow
                 int overFlow = deposit - resourceRoomLeft;
                 deposit = deposit - overFlow;
-                print("there is still deposit left: " + deposit);
-                print("the amount of: " + overFlow + " was deleted due to lack of storage");
             }
 
             //filling the actual towers
@@ -149,21 +147,18 @@ public class GameManager : MonoBehaviour
                 //als er geen ruimte meer is in de betrefte ruimte of de deposit leeg is
                 if (deposit <= 0)
                 {
-                    print("the deposit is equal or smaller than 0: " + deposit);
                     //breek uit de for-loop
                     break;
                 }
                 //als de deposit kleiner is dan de ruimte in de toren AKA (als het past in deze ene toren)
                 else if (roomLeftPerTower[i] >= deposit)
                 {
-                    print("the deposit fits in this tower" + deposit);
                     int amountDeposited = list[i].ResourceAmount += deposit;
                     deposit -= amountDeposited;
                 }
                 //als er te veel deposit is voor deze tower AKA (als de deposit te groot is voor de tower)
                 else if (roomLeftPerTower[i] < deposit)
                 {
-                    print("the deposit is to big to fit in this tower: " + deposit);
                     //set how much room there is in the tower
                     int roomLeft = roomLeftPerTower[i];
                     //subtract the amount were gonna deposit from the deposit
@@ -191,8 +186,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            FillStorageTower(ref CoinBuildings, 4500);
+            FillStorageTower(ref CoinBuildings, 5000);
         }
     }
-
 }

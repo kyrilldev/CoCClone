@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
@@ -73,16 +74,16 @@ public class Building : MonoBehaviour
                 break;
         }
     }
-
-    public bool TowerFull()
+    /// <summary>
+    /// WIP need to add json functionality
+    /// </summary>
+    private async void GetCurrency()
     {
-        if (ResourceAmount >= maxCurrency)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        await Task.Delay(100);
+        Debug.Log("Getting currency");
+        //get the currency from a json
+        int remoteCurrency = 0;//use this var
+
+        ResourceAmount = remoteCurrency;
     }
 }
