@@ -26,16 +26,14 @@ public class Building : MonoBehaviour
 
     private void Awake()
     {
-        StartCoroutine(Init());  
+        Init();
     }
 
     /// <summary>
     /// Initialize the building
     /// </summary>
-    public IEnumerator Init()
+    private void Init()
     {
-        yield return new WaitForSeconds(InitTime);
-
         AddYourself();
     }
 
@@ -86,4 +84,6 @@ public class Building : MonoBehaviour
 
         ResourceAmount = remoteCurrency;
     }
+
+
 }

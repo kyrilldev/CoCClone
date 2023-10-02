@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,8 +32,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        SpawnedEnemies = new List<TroopBase>();
-        TotalEnemies = new List<TroopBase>();
+        SpawnedEnemies = new();
+        TotalEnemies = new();
 
         CoinBuildings = new();
         ElixerBuildings = new();
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        GetSettings();
         GetCurrency();
     }
 
@@ -57,6 +59,7 @@ public class GameManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
+        SetVolume();
         SetCurrency();
     }
 
@@ -70,6 +73,14 @@ public class GameManager : MonoBehaviour
         TotalDarkElixirAmount = PlayerPrefs.GetInt("TotalDarkElixirAmount");
         TotalElixirAmount = PlayerPrefs.GetInt("TotalElixirAmount");
     }
+
+    private void SetVolume()
+    {
+        PlayerPrefs.SetFloat("Music", UIManager.Instance.Music.volume);
+        PlayerPrefs.SetFloat("Alerts", UIManager.Instance.Alerts.volume);
+        PlayerPrefs.SetFloat("SFX", UIManager.Instance.SFX.volume);
+    }
+
     /// <summary>
     /// replace with sql database later on
     /// </summary>
@@ -188,5 +199,13 @@ public class GameManager : MonoBehaviour
         {
             FillStorageTower(ref CoinBuildings, 5000);
         }
+    }
+
+    private void GetSettings()
+    {
+        QualitySettings.vSyncCount = PlayerPrefs.GetInt("Vsync");
+        QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("Quality"));
+        QualitySettings.antiAliasing = PlayerPrefs.GetInt("AntiAliasing");
+        QualitySettings.globalTextureMipmapLimit = PlayerPrefs.GetInt("MipMap");
     }
 }

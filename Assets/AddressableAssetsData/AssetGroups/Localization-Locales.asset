@@ -1,0 +1,309 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Locales
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-Locales
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 48c8ca9aa3a14114bbd7b1b58d46a159
+  m_SerializeEntries:
+  - m_GUID: 2574df5746c8b0d46b3490a6cbcb7053
+    m_Address: Arabic (ar)
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale
+    FlaggedDuringContentUpdateRestriction: 0
+    <IsFolder>k__BackingField: 0
+    <BundleFileId>k__BackingField: 
+    <IsInResources>k__BackingField: 0
+    <IsInSceneList>k__BackingField: 0
+    <IsSubAsset>k__BackingField: 0
+    m_CheckedIsScene: 0
+    m_IsScene: 0
+    m_CurrentHash:
+      bytes[0]: 158
+      bytes[1]: 212
+      bytes[2]: 35
+      bytes[3]: 46
+      bytes[4]: 168
+      bytes[5]: 118
+      bytes[6]: 28
+      bytes[7]: 246
+      bytes[8]: 178
+      bytes[9]: 202
+      bytes[10]: 185
+      bytes[11]: 68
+      bytes[12]: 185
+      bytes[13]: 10
+      bytes[14]: 69
+      bytes[15]: 19
+    m_cachedAssetPath: Assets/Localization/Arabic (ar).asset
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 95b9a0cb60b69534687a6b0ce945fd38
+    m_Address: German (de)
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale
+    FlaggedDuringContentUpdateRestriction: 0
+    <IsFolder>k__BackingField: 0
+    <BundleFileId>k__BackingField: 
+    <IsInResources>k__BackingField: 0
+    <IsInSceneList>k__BackingField: 0
+    <IsSubAsset>k__BackingField: 0
+    m_CheckedIsScene: 0
+    m_IsScene: 0
+    m_CurrentHash:
+      bytes[0]: 144
+      bytes[1]: 138
+      bytes[2]: 186
+      bytes[3]: 53
+      bytes[4]: 224
+      bytes[5]: 112
+      bytes[6]: 179
+      bytes[7]: 163
+      bytes[8]: 42
+      bytes[9]: 236
+      bytes[10]: 115
+      bytes[11]: 45
+      bytes[12]: 82
+      bytes[13]: 178
+      bytes[14]: 127
+      bytes[15]: 68
+    m_cachedAssetPath: Assets/Localization/German (de).asset
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: a072723d1334d2645a835ae2026d1b93
+    m_Address: Hebrew (he)
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale
+    FlaggedDuringContentUpdateRestriction: 0
+    <IsFolder>k__BackingField: 0
+    <BundleFileId>k__BackingField: 
+    <IsInResources>k__BackingField: 0
+    <IsInSceneList>k__BackingField: 0
+    <IsSubAsset>k__BackingField: 0
+    m_CheckedIsScene: 0
+    m_IsScene: 0
+    m_CurrentHash:
+      bytes[0]: 128
+      bytes[1]: 109
+      bytes[2]: 78
+      bytes[3]: 93
+      bytes[4]: 245
+      bytes[5]: 151
+      bytes[6]: 87
+      bytes[7]: 74
+      bytes[8]: 230
+      bytes[9]: 83
+      bytes[10]: 67
+      bytes[11]: 72
+      bytes[12]: 177
+      bytes[13]: 160
+      bytes[14]: 184
+      bytes[15]: 130
+    m_cachedAssetPath: Assets/Localization/Hebrew (he).asset
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 8cbee9d452c712648af5e4b0918e932b
+    m_Address: Dutch (nl)
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale
+    FlaggedDuringContentUpdateRestriction: 0
+    <IsFolder>k__BackingField: 0
+    <BundleFileId>k__BackingField: 
+    <IsInResources>k__BackingField: 0
+    <IsInSceneList>k__BackingField: 0
+    <IsSubAsset>k__BackingField: 0
+    m_CheckedIsScene: 0
+    m_IsScene: 0
+    m_CurrentHash:
+      bytes[0]: 117
+      bytes[1]: 160
+      bytes[2]: 173
+      bytes[3]: 182
+      bytes[4]: 206
+      bytes[5]: 70
+      bytes[6]: 38
+      bytes[7]: 195
+      bytes[8]: 147
+      bytes[9]: 83
+      bytes[10]: 220
+      bytes[11]: 8
+      bytes[12]: 169
+      bytes[13]: 124
+      bytes[14]: 176
+      bytes[15]: 189
+    m_cachedAssetPath: Assets/Localization/Dutch (nl).asset
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: b6deca2f8d263ad4b97b435a181be962
+    m_Address: French (France) (fr-FR)
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale
+    FlaggedDuringContentUpdateRestriction: 0
+    <IsFolder>k__BackingField: 0
+    <BundleFileId>k__BackingField: 
+    <IsInResources>k__BackingField: 0
+    <IsInSceneList>k__BackingField: 0
+    <IsSubAsset>k__BackingField: 0
+    m_CheckedIsScene: 0
+    m_IsScene: 0
+    m_CurrentHash:
+      bytes[0]: 43
+      bytes[1]: 27
+      bytes[2]: 180
+      bytes[3]: 162
+      bytes[4]: 78
+      bytes[5]: 46
+      bytes[6]: 134
+      bytes[7]: 161
+      bytes[8]: 182
+      bytes[9]: 155
+      bytes[10]: 20
+      bytes[11]: 221
+      bytes[12]: 220
+      bytes[13]: 189
+      bytes[14]: 24
+      bytes[15]: 1
+    m_cachedAssetPath: Assets/Localization/French (France) (fr-FR).asset
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: a813b770205262a4c9cded2253daf3ae
+    m_Address: Russian (Russia) (ru-RU)
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale
+    FlaggedDuringContentUpdateRestriction: 0
+    <IsFolder>k__BackingField: 0
+    <BundleFileId>k__BackingField: 
+    <IsInResources>k__BackingField: 0
+    <IsInSceneList>k__BackingField: 0
+    <IsSubAsset>k__BackingField: 0
+    m_CheckedIsScene: 0
+    m_IsScene: 0
+    m_CurrentHash:
+      bytes[0]: 141
+      bytes[1]: 52
+      bytes[2]: 111
+      bytes[3]: 20
+      bytes[4]: 119
+      bytes[5]: 74
+      bytes[6]: 126
+      bytes[7]: 225
+      bytes[8]: 55
+      bytes[9]: 94
+      bytes[10]: 161
+      bytes[11]: 80
+      bytes[12]: 137
+      bytes[13]: 244
+      bytes[14]: 78
+      bytes[15]: 100
+    m_cachedAssetPath: Assets/Localization/Russian (Russia) (ru-RU).asset
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 715f1ab156bc9194096416f115d2d3a8
+    m_Address: Thai (Thailand) (th-TH)
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale
+    FlaggedDuringContentUpdateRestriction: 0
+    <IsFolder>k__BackingField: 0
+    <BundleFileId>k__BackingField: 
+    <IsInResources>k__BackingField: 0
+    <IsInSceneList>k__BackingField: 0
+    <IsSubAsset>k__BackingField: 0
+    m_CheckedIsScene: 0
+    m_IsScene: 0
+    m_CurrentHash:
+      bytes[0]: 153
+      bytes[1]: 82
+      bytes[2]: 69
+      bytes[3]: 95
+      bytes[4]: 217
+      bytes[5]: 173
+      bytes[6]: 142
+      bytes[7]: 233
+      bytes[8]: 51
+      bytes[9]: 156
+      bytes[10]: 6
+      bytes[11]: 146
+      bytes[12]: 120
+      bytes[13]: 30
+      bytes[14]: 77
+      bytes[15]: 117
+    m_cachedAssetPath: Assets/Localization/Thai (Thailand) (th-TH).asset
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 267a060c93e135347864f36f9108b2d9
+    m_Address: Chinese (Simplified) (zh)
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale
+    FlaggedDuringContentUpdateRestriction: 0
+    <IsFolder>k__BackingField: 0
+    <BundleFileId>k__BackingField: 
+    <IsInResources>k__BackingField: 0
+    <IsInSceneList>k__BackingField: 0
+    <IsSubAsset>k__BackingField: 0
+    m_CheckedIsScene: 0
+    m_IsScene: 0
+    m_CurrentHash:
+      bytes[0]: 62
+      bytes[1]: 75
+      bytes[2]: 116
+      bytes[3]: 93
+      bytes[4]: 15
+      bytes[5]: 183
+      bytes[6]: 239
+      bytes[7]: 204
+      bytes[8]: 54
+      bytes[9]: 94
+      bytes[10]: 51
+      bytes[11]: 151
+      bytes[12]: 15
+      bytes[13]: 189
+      bytes[14]: 212
+      bytes[15]: 75
+    m_cachedAssetPath: Assets/Localization/Chinese (Simplified) (zh).asset
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: afa797b7778a2f647adf2938c0e2bd2a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: eb6d4d94c600b9646baef143a477434d, type: 2}
+    - {fileID: 11400000, guid: 11235faec9269c842b9d7ba57f48b6d5, type: 2}
+  m_FolderEntryCache: []
+  m_AssetCollectionEntryCache: []
+  <FlaggedDuringContentUpdateRestriction>k__BackingField: 0
+  m_CurrentHash:
+    bytes[0]: 101
+    bytes[1]: 173
+    bytes[2]: 134
+    bytes[3]: 128
+    bytes[4]: 186
+    bytes[5]: 235
+    bytes[6]: 123
+    bytes[7]: 218
+    bytes[8]: 191
+    bytes[9]: 111
+    bytes[10]: 138
+    bytes[11]: 80
+    bytes[12]: 106
+    bytes[13]: 108
+    bytes[14]: 11
+    bytes[15]: 3
