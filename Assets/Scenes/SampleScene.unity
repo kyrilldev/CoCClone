@@ -484,14 +484,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940055cae5cb20d4baa5df1eb928346a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResourceAmount: 0
-  InitTime: 1
-  AttackTime: 0
-  TownHall: 0
-  defenseTower: 0
-  minCurrency: 0
-  maxCurrency: 5000
-  currency: 2
 --- !u!136 &20156060
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1853,7 +1845,7 @@ GameObject:
   - component: {fileID: 179193463}
   - component: {fileID: 179193462}
   - component: {fileID: 179193461}
-  - component: {fileID: 179193460}
+  - component: {fileID: 179193465}
   m_Layer: 0
   m_Name: Building (3)
   m_TagString: Untagged
@@ -1861,26 +1853,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &179193460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 179193459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 940055cae5cb20d4baa5df1eb928346a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ResourceAmount: 0
-  InitTime: 1
-  AttackTime: 0
-  TownHall: 0
-  defenseTower: 0
-  minCurrency: 0
-  maxCurrency: 5000
-  currency: 0
 --- !u!136 &179193461
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1969,6 +1941,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &179193465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179193459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bedb93865931b447adc8505905da6c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ResourceAmount: 0
+  minCurrency: 0
+  maxCurrency: 5000
+  currency: 0
 --- !u!1 &180745918
 GameObject:
   m_ObjectHideFlags: 0
@@ -5097,14 +5085,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 584866043}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 940055cae5cb20d4baa5df1eb928346a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0bedb93865931b447adc8505905da6c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceAmount: 0
-  InitTime: 1
-  AttackTime: 0
-  TownHall: 0
-  defenseTower: 0
   minCurrency: 0
   maxCurrency: 5000
   currency: 0
@@ -13457,14 +13441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940055cae5cb20d4baa5df1eb928346a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResourceAmount: 0
-  InitTime: 1
-  AttackTime: 0
-  TownHall: 0
-  defenseTower: 0
-  minCurrency: 0
-  maxCurrency: 5000
-  currency: 1
 --- !u!136 &1734122783
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -25,9 +25,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int MaxBuilders = 3;
 
-    public List<Building> CoinBuildings;
-    public List<Building> ElixerBuildings;
-    public List<Building> DarkElixerBuildings;
+    public List<CoinStorage> CoinBuildings;
+    public List<ElixerStorage> ElixerBuildings;
+    public List<DarkElixerStorage> DarkElixerBuildings;
 
     private void Awake()
     {
@@ -105,9 +105,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="list"></param>
     /// <param name="deposit"></param>
-    public void FillStorageTower(ref List<Building> list, int deposit)
+    public void FillStorageTower<T>(int deposit, List<T> list) where T : StorageTower
     {
-
         List<int> maxes = new();
         for (int i = 0; i < list.Count; i++)
         {
@@ -138,7 +137,7 @@ public class GameManager : MonoBehaviour
             //init
             List<int> roomLeftPerTower = new();
 
-            foreach (Building b in list)
+            foreach (StorageTower b in list)
             {
                 int roomLeft = b.maxCurrency - b.ResourceAmount;
                 roomLeftPerTower.Add(roomLeft);
@@ -184,7 +183,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void CalculateMaxCurrency(List<Building> list)
+    private void CalculateMaxCurrency<T>(List<T> list) where T : StorageTower
     {
         TotalCoinAmount = 0;
         for (int i = 0; i < list.Count; i++)
@@ -195,10 +194,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            FillStorageTower(ref CoinBuildings, 5000);
-        }
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    FillStorageTower(ref CoinBuildings, 5000);
+        //}
     }
 
     private void GetSettings()
@@ -207,5 +206,10 @@ public class GameManager : MonoBehaviour
         QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("Quality"));
         QualitySettings.antiAliasing = PlayerPrefs.GetInt("AntiAliasing");
         QualitySettings.globalTextureMipmapLimit = PlayerPrefs.GetInt("MipMap");
+    }
+
+    private void ProcessCurrency()
+    {
+
     }
 }
