@@ -6,8 +6,13 @@ using UnityEngine;
 [RequireComponent(typeof(GameManager))]
 public class TownHall : MonoBehaviour
 {
-    int lvl;
+    public static TownHall instance;
+    public int lvl;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
         lvl = GetLvl();
@@ -21,6 +26,21 @@ public class TownHall : MonoBehaviour
 
     public void Upgrade()
     {
-        lvl++;
+        if (CanUpgrade())
+        {
+            lvl++;
+        }
+    }
+
+    public bool CanUpgrade()
+    {
+        if (GameManager.Instance.TotalCurrency >= GameManager.Instance.TotalCurrency * (lvl / 10))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

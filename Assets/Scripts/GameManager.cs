@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     public List<ElixerStorage> ElixerBuildings;
     public List<DarkElixerStorage> DarkElixerBuildings;
 
+    public int TotalCurrency;
+
     private void Awake()
     {
         Instance = this;
@@ -44,6 +46,8 @@ public class GameManager : MonoBehaviour
     {
         GetSettings();
         GetCurrency();
+
+        TotalCurrency = TotalCoinAmount + TotalDarkElixirAmount + TotalElixirAmount;
     }
 
     private void OnMouseDown()
@@ -194,10 +198,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    FillStorageTower(ref CoinBuildings, 5000);
-        //}
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            FillStorageTower(5000, CoinBuildings);
+        }
     }
 
     private void GetSettings()
